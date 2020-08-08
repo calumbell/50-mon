@@ -188,18 +188,26 @@ function TakeTurnState:victory()
             local exp = (self.opponentPokemon.HPIV + self.opponentPokemon.attackIV +
                 self.opponentPokemon.defenseIV + self.opponentPokemon.speedIV) * self.opponentPokemon.level * EXP_MODIFIER
 
-            gStateStack:push(BattleMessageState('You earned ' .. tostring(exp) .. ' experience points!',
-                function() end, false))
+            -- chaining async fns/callbacks to handle experience/levelup
+            Chain(
+                -- display XP msg for 1.5s
+                function (go)
+                    gStateStack:push(BattleMessageState('You earned ' .. tostring(exp) .. ' experience points!',
+                    function() end, false))
+                    Timer.after(1.5, go)
+                end,
 
-            Timer.after(1.5, function()
-                gSounds['exp']:play()
+                -- play sfx, animate XP bar filling over 0.5s
+                function(go)
+                    gSounds['exp']:play()
+                    Timer.tween(0.5, {
+                        [self.battleState.playerExpBar] = {value = math.min(self.playerPokemon.currentExp + exp, self.playerPokemon.expToLevel)}
+                    })
+                    Timer.after(0.5, go)
+                end,
 
-                -- animate the exp filling up
-                Timer.tween(0.5, {
-                    [self.battleState.playerExpBar] = {value = math.min(self.playerPokemon.currentExp + exp, self.playerPokemon.expToLevel)}
-                })
-                :finish(function()
-                    
+                -- check for levelup, and fadeOut
+                function (go)
                     -- pop exp message off
                     gStateStack:pop()
 
@@ -218,11 +226,13 @@ function TakeTurnState:victory()
                         function()
                             self:fadeOutWhite()
                         end))
+
+                    -- if we didn't level up, fade to white and return to PlayState
                     else
                         self:fadeOutWhite()
                     end
-                end)
-            end)
+                end
+            )()
         end))
     end)
 end

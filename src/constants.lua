@@ -17,5 +17,5 @@ WINDOW_HEIGHT = 720
 TILE_SIZE = 16
 
 -- added gameplay constants for ease of editing during debugging
-RANDOM_ENCOUNTER_CHANCE = 1
-EXP_MODIFIER = 3
+RANDOM_ENCOUNTER_CHANCE = 10
+EXP_MODIFIER = 1
