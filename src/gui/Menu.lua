@@ -21,8 +21,10 @@ function Menu:init(def)
         y = def.y,
         width = def.width,
         height = def.height,
-        selectionEnabled = def.selectionEnabled
+        selectionEnabled = def.selectionEnabled,
+        onClose = def.onClose
     }
+
 end
 
 function Menu:update(dt)

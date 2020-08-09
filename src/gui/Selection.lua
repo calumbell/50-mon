@@ -27,7 +27,11 @@ function Selection:init(def)
     self.currentSelection = 1
 
     -- cb. set this to false to disable menu selection
-    self.selectionEnabled = def.selectionEnabled or true
+    self.selectionEnabled = def.selectionEnabled
+
+    if self.selectionEnabled == false then
+        self.onClose = def.onClose
+    end
 end
 
 function Selection:update(dt)
@@ -60,7 +64,10 @@ function Selection:update(dt)
     -- if selection is disabled, pop state when return/enter is pressed
     else
         if love.keyboard.wasPressed('return') or love.keyboard.wasPressed('enter') then
-            -- TODO
+
+            -- pop off menu state
+            gStateStack:pop()
+            self.onClose()
         end
     end
 end

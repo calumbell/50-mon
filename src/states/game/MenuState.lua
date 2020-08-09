@@ -8,8 +8,8 @@
 
 MenuState = Class{__includes = BaseState}
 
-function MenuState:init(params, battleState)
-	self.battleState = params.battleState
+function MenuState:init(params)
+	params.battleState = params.battleState
 
 	if params.menuType == "level up" then
 		self.menu = Menu ({
@@ -18,6 +18,7 @@ function MenuState:init(params, battleState)
 			width = 128,
         	height = VIRTUAL_HEIGHT - 64,
         	selectionEnabled = false,
+        	onClose = params.onClose,
         	items = {
         		{
         			text = "HP"

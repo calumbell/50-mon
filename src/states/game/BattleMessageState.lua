@@ -14,6 +14,7 @@ function BattleMessageState:init(msg, onClose, canInput)
     -- function to be called once this message is popped
     self.onClose = onClose or function() end
 
+    if self.onClose == nil then print('no on close method') end
     -- whether we can detect input with this or not; true by default
     self.canInput = canInput
 

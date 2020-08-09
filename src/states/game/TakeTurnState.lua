@@ -197,7 +197,7 @@ function TakeTurnState:calcExperienceAndReturnToWorld()
     local exp = (self.opponentPokemon.HPIV + self.opponentPokemon.attackIV +
         self.opponentPokemon.defenseIV + self.opponentPokemon.speedIV) * self.opponentPokemon.level * EXP_MODIFIER
 
-    -- chaining async fns/callbacks to handle experience/levelup
+    -- chain async fns/callbacks to handle experience/levelup
     Chain(
         -- display XP msg for 1.5s
         function (go)
@@ -231,10 +231,23 @@ function TakeTurnState:calcExperienceAndReturnToWorld()
                 self.playerPokemon.currentExp = self.playerPokemon.currentExp - self.playerPokemon.expToLevel
                 local statChanges = self.playerPokemon:levelUp()
 
-                gStateStack:push(BattleMessageState('Congratulations! Level Up!',
-                function()
-                    self:fadeOutWhite()
-                end))
+                Chain(
+                    function(go)
+                        gStateStack:push(BattleMessageState('Congratulations! Level Up!', go))
+                    end,
+
+                    function(go)
+                        gStateStack:push(MenuState({
+                            battleState = self.battleState,
+                            menuType = "level up",
+                            onClose = go
+                        }))
+                    end,
+
+                    function(go)
+                        self:fadeOutWhite()
+                    end
+                )()
 
             -- if we didn't level up, fade to white and return to PlayState
             else
