@@ -92,7 +92,32 @@ function Pokemon:statsLevelUp()
         end
     end
 
-    return HPIncrease, attackIncrease, defenseIncrease, speedIncrease
+    -- return HPIncrease, attackIncrease, defenseIncrease, speedIncrease
+
+    local stats =  {
+        ['hp'] = {
+            old = self.HP - HPIncrease,
+            increase = HPIncrease,
+            new = self.HP
+        },
+        ['attack'] = {
+            old = self.attack - attackIncrease,
+            increase = attackIncrease,
+            new = self.attack
+        },
+        ['defense'] = {
+            old = self.defense - defenseIncrease,
+            increase = defenseIncrease,
+            new = self.defenseIncrease
+        },
+        ['speed'] = {
+            old = self.speed - speedIncrease,
+            increase = speedIncrease,
+            new = self.speed
+        }
+    }
+
+    return stats
 end
 
 function Pokemon:levelUp()
