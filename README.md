@@ -1,6 +1,6 @@
-# 5ó-Mon
+# 50-Mon
 
-Assignment 7 of *CS50 Introduction to Games Development* (by EDX/HarvardX).
+Assignment 7 of *CS50 Introduction to Games Development* (by EDX/HarvardX) was to implement new features for *50-Mon* (essentailly a clone of the early Pokémon games). The purpose of this activity was to get comfortable with using StateStacks as a data structure, and how we can use them to layer game states to create GUI elements, menus, etc.
 
 ## Requirements
 - LÖVE 2D 0.10.2 [Super Toast] -> https://github.com/love2d/love/releases/tag/0.10.2
