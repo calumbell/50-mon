@@ -92,28 +92,18 @@ function Pokemon:statsLevelUp()
         end
     end
 
-    -- return HPIncrease, attackIncrease, defenseIncrease, speedIncrease
-
     local stats =  {
-        ['hp'] = {
-            old = self.HP - HPIncrease,
-            increase = HPIncrease,
-            new = self.HP
+        {
+            text = self:statIncreasesToString("HP", HPIncrease, self.HP)
         },
-        ['attack'] = {
-            old = self.attack - attackIncrease,
-            increase = attackIncrease,
-            new = self.attack
+        {
+            text = self:statIncreasesToString("ATK", attackIncrease, self.attack)
         },
-        ['defense'] = {
-            old = self.defense - defenseIncrease,
-            increase = defenseIncrease,
-            new = self.defenseIncrease
+        {
+            text = self:statIncreasesToString("DEF", defenseIncrease, self.defense)
         },
-        ['speed'] = {
-            old = self.speed - speedIncrease,
-            increase = speedIncrease,
-            new = self.speed
+        {
+            text = self:statIncreasesToString("SPD", speedIncrease, self.speed)
         }
     }
 
@@ -125,4 +115,10 @@ function Pokemon:levelUp()
     self.expToLevel = self.level * self.level * 5 * 0.75
 
     return self:statsLevelUp()
+end
+
+function Pokemon:statIncreasesToString(stat, increase, new)
+    return tostring(stat .. ": " .. tostring(new - increase) 
+        .. " -> +" .. tostring(increase) 
+        .. " -> " .. tostring(new))
 end

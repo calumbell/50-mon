@@ -240,6 +240,7 @@ function TakeTurnState:calcExperienceAndReturnToWorld()
                         gStateStack:push(MenuState({
                             battleState = self.battleState,
                             menuType = "level up",
+                            items = statChanges,
                             onClose = go
                         }))
                     end,

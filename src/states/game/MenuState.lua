@@ -13,29 +13,13 @@ function MenuState:init(params)
 
 	if params.menuType == "level up" then
 		self.menu = Menu ({
-			x = VIRTUAL_WIDTH - 128,
-			y = 64,
-			width = 128,
-        	height = VIRTUAL_HEIGHT - 64,
+			x = VIRTUAL_WIDTH - 192,
+			y = 96,
+			width = 192,
+        	height = VIRTUAL_HEIGHT - 96,
         	selectionEnabled = false,
         	onClose = params.onClose,
-        	items = {
-        		{
-        			text = "HP"
-        		},
-
-        		{
-        			text = "Attack"
-        		},
-
-        		{
-        			text = "Defense"
-        		},
-
-        		{
-        			text = "Speed"
-        		}
-        	}
+        	items = params.items
 		})
 	end
 end
