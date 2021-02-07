@@ -1,20 +1,33 @@
 # 50-Mon
 
-Assignment 7 of *CS50 Introduction to Games Development* (by EDX/HarvardX) was to implement new features for *50-Mon* (essentailly a clone of the early Pokémon games). The purpose of this activity was to get comfortable with using StateStacks as a data structure, and how we can use them to layer game states to create GUI elements, menus, etc.
+Project 7 of [CS50's Introduction to Games Development](https://cs50.harvard.edu/games/2018/)
+
+*50-Mon* is a game heavily inspired by [Pokémon Red & Blue](https://en.wikipedia.org/wiki/Pok%C3%A9mon_Red_and_Blue) (1996) and built using the [LÖVE2D](https://love2d.org/) framework. The goal for this assessment was to implement a level-up system.
+
+[Full project specification](https://cs50.harvard.edu/games/2018/projects/7/pokemon/).
+
+## Setup
+First, clone this repository:
+```bash
+git clone https://github.com/calumbell/cs50g-50-mon
+```
+Install **LÖVE2D** (v10.2) - [click here for installation instructions](https://love2d.org/wiki/Getting_Started)
+
+To run the game:
+```bash
+cd cs50g-50-mon
+love .
+```
+
+## Visuals
+You can see a video demonstration of this project [here](https://youtu.be/HhQm5arN4Jc).
+
+<img src="graphics/screenshots/50-mon-title.png" width=400>
+<img src="graphics/screenshots/50-mon-overworld.png" width=400>
+<img src="graphics/screenshots/50-mon-battle.png" width=400>
+<img src="graphics/screenshots/50-mon-level-up.png" width=400>
 
 ## Requirements
-- LÖVE 2D 0.10.2 [Super Toast] -> https://github.com/love2d/love/releases/tag/0.10.2
+*50-Mon* was built using the [LÖVE2D](https://love2d.org/) framework (version 10.2).
 
-## Topics
-- StateStacks
-- Turn Based Systems
-- GUIs
-- RPG Mechanics
-
-## Assessment Criteria
-- Implement a Menu that appears during the player Pokémon's level up that shows, for each stat *X + Y = Z*; where X is the starting stat, Y is the amount it's increased for this level, and Z is the resultant sum.
-
-## Links
-Learn more about CS50G: https://www.edx.org/course/cs50s-introduction-to-game-development
-
-You can view the distribution code by checking out this repo's initial commit, or by downloading it from: cdn.cs50.net/games/2019/x/assignments/7/assignment7.zip
+[Push](https://github.com/Ulydev/push) was used for resolution-handling, [hump](https://github.com/vrld/hump/blob/master/class.lua) was used for Lua object-orientation, and [Knife](https://github.com/airstruck/knife) was used to handle asynchronous code, chained functions, tweening, etc.
